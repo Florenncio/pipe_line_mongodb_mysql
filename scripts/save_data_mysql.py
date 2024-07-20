@@ -89,10 +89,13 @@ def show_tables(cursor, db_name):
 def read_csv(file_name):
     directory = "./data"
 
-    file_path = os.path.join(directory, f"{file_name}.csv")
-    df = pd.read_csv(file_path)
+    if os.path.exists(directory):
+        file_path = os.path.join(directory, f"{file_name}.csv")
+        df = pd.read_csv(file_path)
 
-    return df
+        return df
+    else:
+        print(f"Arquivo não encontrado o diretorio {directory}")
 
 
 def add_product_data(cnx, cursor, df, db_name, tb_name):
